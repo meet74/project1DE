@@ -1,0 +1,77 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adfproject1DE"
+		},
+		"ls_adls_sink_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_sink'"
+		},
+		"ls_blobl_source_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'ls_blobl_source'"
+		},
+		"ls_adls_sink_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://adlsproject1de.dfs.core.windows.net/"
+		},
+		"trgr_schedule_properties_pipeline1_parameters_retailFileName": {
+			"type": "string",
+			"defaultValue": "retail_raw_data\n"
+		},
+		"trgr_schedule_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/b5661abd-61e4-496b-bce5-4f1f2ff7f878/resourceGroups/project1-rg/providers/Microsoft.Storage/storageAccounts/blobproject1de"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adfproject1DE_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_adls_sink_accountKey": {
+						"value": "[parameters('ls_adls_sink_accountKey')]"
+					},
+					"ls_blobl_source_connectionString": {
+						"value": "[parameters('ls_blobl_source_connectionString')]"
+					},
+					"ls_adls_sink_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_sink_properties_typeProperties_url')]"
+					},
+					"trgr_schedule_properties_pipeline1_parameters_retailFileName": {
+						"value": "[parameters('trgr_schedule_properties_pipeline1_parameters_retailFileName')]"
+					},
+					"trgr_schedule_properties_typeProperties_scope": {
+						"value": "[parameters('trgr_schedule_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

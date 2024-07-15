@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfproject1DE"
+		},
+		"ls_adls_sink_accountKey": {
+			"value": ""
+		},
+		"ls_blobl_source_connectionString": {
+			"value": ""
+		},
+		"ls_adls_sink_properties_typeProperties_url": {
+			"value": "https://adlsproject1de.dfs.core.windows.net/"
+		},
+		"trgr_schedule_properties_pipeline1_parameters_retailFileName": {
+			"value": "retail_raw_data\n"
+		},
+		"trgr_schedule_properties_typeProperties_scope": {
+			"value": "/subscriptions/b5661abd-61e4-496b-bce5-4f1f2ff7f878/resourceGroups/project1-rg/providers/Microsoft.Storage/storageAccounts/blobproject1de"
+		}
+	}
+}
