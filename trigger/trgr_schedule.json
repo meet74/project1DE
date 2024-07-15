@@ -1,0 +1,27 @@
+{
+	"name": "trgr_schedule",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"retailFileName": "retail_raw_data\n"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/rawdata/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/b5661abd-61e4-496b-bce5-4f1f2ff7f878/resourceGroups/project1-rg/providers/Microsoft.Storage/storageAccounts/blobproject1de",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
